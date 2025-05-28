@@ -9,7 +9,7 @@ import React from "react";
 // }
 
 /// USING CONTEXT API
-export default function Counter() {
+export default function Counter({ numberOfItemsPacked, totalNumberOfItems }) {
   return (
     <p>
       <b>{numberOfItemsPacked}</b> / {totalNumberOfItems} packed

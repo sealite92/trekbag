@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
+import { itemStore } from "../stores/itemsStore";
 import Counter from "./Counter";
 import Logo from "./Logo";
-import { useItemsContext } from "../lib/hooks";
+// import { useItemsContext } from "../lib/hooks";
 
+// USING PROP DRILLING
 // export default function Header({ numberOfItemsPacked, totalNumberOfItems }) {
 //   return (
 //     <header>
@@ -16,9 +18,21 @@ import { useItemsContext } from "../lib/hooks";
 // }
 
 ///USING CONTEXT API
-export default function Header() {
-  const { items } = useItemsContext();
+// export default function Header() {
+//   const { items } = useItemsContext();
 
+//   return (
+//     <header>
+//       <Logo />
+//       <Counter
+//         numberOfItemsPacked={items.filter((item) => item.packed).length}
+//         totalNumberOfItems={items.length}
+//       />
+//     </header>
+//   );
+// }
+export default function Header() {
+  const items = itemStore((state) => state.items);
   return (
     <header>
       <Logo />

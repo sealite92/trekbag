@@ -1,6 +1,7 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import Button from "./Button";
-import { ItemsContext } from "../contexts/itemsContextProvider";
+// import { ItemsContext } from "../contexts/itemsContextProvider";
+import { itemStore } from "../stores/itemsStore";
 
 // export default function ButtonGroup({
 //   handleRemoveAll,
@@ -31,28 +32,56 @@ import { ItemsContext } from "../contexts/itemsContextProvider";
 // }
 
 /// USING CONTEXT API
+// export default function ButtonGroup() {
+//   const {
+//     handleRemoveAll,
+//     handleResetToInitial,
+//     handleMarkAllComplete,
+//     handleMarkAllInComplete,
+//   } = useContext(ItemsContext);
+//   return (
+//     <div className="button-group">
+//       <Button onClick={handleMarkAllComplete} buttonType="secondary">
+//         {" "}
+//         Mark all as complete
+//       </Button>
+//       <Button onClick={handleMarkAllInComplete} buttonType="secondary">
+//         {" "}
+//         Mark all as incomplete
+//       </Button>
+//       <Button onClick={handleResetToInitial} buttonType="secondary">
+//         {" "}
+//         Reset to initials
+//       </Button>
+//       <Button buttonType="secondary" onClick={handleRemoveAll}>
+//         {" "}
+//         Remove all items
+//       </Button>
+//     </div>
+//   );
+// }
+
+///USING ZUSTAND
 export default function ButtonGroup() {
-  const {
-    handleRemoveAll,
-    handleResetToInitial,
-    handleMarkAllComplete,
-    handleMarkAllInComplete,
-  } = useContext(ItemsContext);
+  const markAllComplete = itemStore((state) => state.markAllComplete);
+  const markAllinComplete = itemStore((state) => state.markAllinComplete);
+  const resetToInitial = itemStore((state) => state.resetToInitial);
+  const removeAll = itemStore((state) => state.removeAll);
   return (
     <div className="button-group">
-      <Button onClick={handleMarkAllComplete} buttonType="secondary">
+      <Button onClick={markAllComplete} buttonType="secondary">
         {" "}
         Mark all as complete
       </Button>
-      <Button onClick={handleMarkAllInComplete} buttonType="secondary">
+      <Button onClick={markAllinComplete} buttonType="secondary">
         {" "}
         Mark all as incomplete
       </Button>
-      <Button onClick={handleResetToInitial} buttonType="secondary">
+      <Button onClick={resetToInitial} buttonType="secondary">
         {" "}
         Reset to initials
       </Button>
-      <Button buttonType="secondary" onClick={handleRemoveAll}>
+      <Button buttonType="secondary" onClick={removeAll}>
         {" "}
         Remove all items
       </Button>

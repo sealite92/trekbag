@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
 import AddItemForm from "./AddItemForm";
 import ButtonGroup from "./ButtonGroup";
-import { ItemsContext } from "../contexts/itemsContextProvider";
-import { useItemsContext } from "../lib/hooks";
+// import { ItemsContext } from "../contexts/itemsContextProvider";
+// import { useItemsContext } from "../lib/hooks";
+import { itemStore } from "../stores/itemsStore";
 
 // export default function SideBar({
 //   handleAddItem,
@@ -25,11 +25,22 @@ import { useItemsContext } from "../lib/hooks";
 // }
 
 /// USING CONTEXT API
+// export default function SideBar() {
+//   const { handleAddItem } = useItemsContext();
+//   return (
+//     <div className="sidebar">
+//       <AddItemForm onAddItem={handleAddItem} />
+//       <ButtonGroup />
+//     </div>
+//   );
+// }
+
+//USING ZUSTAND
 export default function SideBar() {
-  const { handleAddItem } = useItemsContext();
+  const addItem = itemStore((state) => state.addItem);
   return (
     <div className="sidebar">
-      <AddItemForm onAddItem={handleAddItem} />
+      <AddItemForm onAddItem={addItem} />
       <ButtonGroup />
     </div>
   );

@@ -1,6 +1,6 @@
-// import { useEffect, useState } from "react";
-import { useContext } from "react";
-import ItemsContextProvider from "../contexts/itemsContextProvider";
+// // import { useEffect, useState } from "react";
+// import { useContext } from "react";
+// import ItemsContextProvider from "../contexts/itemsContextProvider";
 
 import BackgroundHeading from "./BackgroundHeading";
 import Footer from "./Footer";
@@ -72,6 +72,7 @@ function App() {
 
   return (
     // <>
+    /// USING PTOP DRILLING
     //   <BackgroundHeading />
     //   <main>
     //     <Header
@@ -95,14 +96,25 @@ function App() {
     // </>
 
     ///USING CONTEXT API
+    // <>
+    //   <BackgroundHeading />
+    //   <main>
+    //     <ItemsContextProvider>
+    //       <Header />
+    //       <ItemList />
+    //       <SideBar />
+    //     </ItemsContextProvider>
+    //   </main>
+    //   <Footer />
+    // </>
+
     <>
+      /// USING ZUSTAND
       <BackgroundHeading />
       <main>
-        <ItemsContextProvider>
-          <Header />
-          <ItemList />
-          <SideBar />
-        </ItemsContextProvider>
+        <Header />
+        <ItemList />
+        <SideBar />
       </main>
       <Footer />
     </>

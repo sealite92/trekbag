@@ -1,9 +1,11 @@
 import Select from "react-select";
 
 import EmptyView from "./EmptyView";
-import { useContext, useMemo, useState } from "react";
-import { ItemsContext } from "../contexts/itemsContextProvider";
-import { useItemsContext } from "../lib/hooks";
+
+// import { ItemsContext } from "../contexts/itemsContextProvider";
+// import { useItemsContext } from "../lib/hooks";
+import { useMemo, useState } from "react";
+import { itemStore } from "../stores/itemsStore";
 
 const sortingOptions = [
   { value: "default", label: "Sort Default" },
@@ -77,9 +79,74 @@ const sortingOptions = [
 // }
 
 ///USING CONTEXT API
+// export default function ItemList() {
+//   const [sortBy, setSortBy] = useState("default");
+//   const { items, handleDeleteItem, handleToggleItem } = useItemsContext();
+
+//   const sortedItems = useMemo(
+//     () =>
+//       [...items].sort((a, b) => {
+//         if (sortBy === "packed") {
+//           return b.packed - a.packed;
+//         }
+//         if (sortBy === "unpacked") {
+//           return a.packed - b.packed;
+//         }
+//         return;
+//       }),
+//     [items, sortBy]
+//   );
+
+//   return (
+//     <ul className="item-list">
+//       {items.length === 0 && <EmptyView />}
+//       {items.length > 0 && (
+//         <section className="sorting">
+//           {" "}
+//           <Select
+//             defaultValue={sortingOptions[0]}
+//             onChange={(option) => setSortBy(option.value)}
+//             options={sortingOptions}
+//           />
+//         </section>
+//       )}
+//       {sortedItems.map((item) => {
+//         return (
+//           <Item
+//             handleDeleteItem={handleDeleteItem}
+//             handleToggleItem={handleToggleItem}
+//             key={item.id}
+//             item={item}
+//           />
+//         );
+//       })}
+//     </ul>
+//   );
+// }
+
+// function Item({ item, handleDeleteItem, handleToggleItem }) {
+//   return (
+//     <li className="item">
+//       <label>
+//         <input
+//           onChange={() => handleToggleItem(item.id)}
+//           checked={item.packed}
+//           readOnly
+//           type="checkbox"
+//         />{" "}
+//         {item.name}
+//       </label>
+//       <button onClick={() => handleDeleteItem(item.id)}>❌</button>
+//     </li>
+//   );
+// }
+
+/// USING ZUSTAND
 export default function ItemList() {
+  const items = itemStore((state) => state.items);
+  const deleteItem = itemStore((state) => state.deleteItem);
+  const toggleItem = itemStore((state) => state.toggleItem);
   const [sortBy, setSortBy] = useState("default");
-  const { items, handleDeleteItem, handleToggleItem } = useItemsContext();
 
   const sortedItems = useMemo(
     () =>
@@ -111,8 +178,8 @@ export default function ItemList() {
       {sortedItems.map((item) => {
         return (
           <Item
-            handleDeleteItem={handleDeleteItem}
-            handleToggleItem={handleToggleItem}
+            handleDeleteItem={deleteItem}
+            handleToggleItem={toggleItem}
             key={item.id}
             item={item}
           />
