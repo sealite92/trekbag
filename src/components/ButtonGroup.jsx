@@ -64,16 +64,16 @@ import { itemStore } from "../stores/itemsStore";
 ///USING ZUSTAND
 export default function ButtonGroup() {
   const markAllComplete = itemStore((state) => state.markAllComplete);
-  const markAllinComplete = itemStore((state) => state.markAllinComplete);
+  const markAllInComplete = itemStore((state) => state.markAllInComplete);
   const resetToInitial = itemStore((state) => state.resetToInitial);
-  const removeAll = itemStore((state) => state.removeAll);
+  const removeAllItems = itemStore((state) => state.removeAllItems);
   return (
     <div className="button-group">
       <Button onClick={markAllComplete} buttonType="secondary">
         {" "}
         Mark all as complete
       </Button>
-      <Button onClick={markAllinComplete} buttonType="secondary">
+      <Button onClick={markAllInComplete} buttonType="secondary">
         {" "}
         Mark all as incomplete
       </Button>
@@ -81,7 +81,7 @@ export default function ButtonGroup() {
         {" "}
         Reset to initials
       </Button>
-      <Button buttonType="secondary" onClick={removeAll}>
+      <Button buttonType="secondary" onClick={removeAllItems}>
         {" "}
         Remove all items
       </Button>

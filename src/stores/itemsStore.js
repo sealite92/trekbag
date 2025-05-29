@@ -27,8 +27,8 @@ export const itemStore = create((set) => ({
         if (item.id === id) {
           return { ...item, packed: !item.packed };
         }
-        return { items: newItems };
       });
+      return { items: newItems };
     });
   },
 
