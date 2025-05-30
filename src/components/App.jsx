@@ -108,8 +108,8 @@ function App() {
     //   <Footer />
     // </>
 
+    //USING ZUSTAND
     <>
-      /// USING ZUSTAND
       <BackgroundHeading />
       <main>
         <Header />

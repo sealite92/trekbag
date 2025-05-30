@@ -31,6 +31,8 @@ import Logo from "./Logo";
 //     </header>
 //   );
 // }
+///USING ZUSTAND
+
 export default function Header() {
   const items = itemStore((state) => state.items);
   return (
